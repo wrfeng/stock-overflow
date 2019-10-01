@@ -3,6 +3,8 @@ class CreateStocks < ActiveRecord::Migration[5.2]
     create_table :stocks do |t|
       t.string :symbol, null: false
       t.decimal :price, null: false
+
+      t.timestamps
     end
 
     add_index :stocks, :symbol

@@ -5,6 +5,8 @@ class CreateUsersTable < ActiveRecord::Migration[5.2]
       t.string :email, null: false
       t.string :password_digest, null: false
       t.decimal :account_balance, precision: 10, scale: 2
+
+      t.timestamps
     end
 
     add_index :users, :email, unique: true

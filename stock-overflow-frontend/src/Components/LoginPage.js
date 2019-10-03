@@ -10,18 +10,42 @@ class LoginPage extends React.Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value })
   }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+
+    fetch("http://localhost:3001/login", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(resp => resp.json())
+      .then(resp => {
+        if (resp.token) {
+          localStorage.setItem('token', resp.token)
+          this.props.setUser(resp)
+          resp.token && this.props.history.push('/')
+        }
+      })
+  }
+
   render(){
     return(
       <div className="login-form">
         <h1>Sign IN</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input 
             placeholder="email"
             name="email"
             onChange={this.handleChange}
             value={this.state.email}
           />
-  <br/>
+
+         <br/>
+
           <input 
             type="password" 
             placeholder="password" 
@@ -29,9 +53,12 @@ class LoginPage extends React.Component {
             onChange={this.handleChange}
             value={this.state.password}
           />
-<br/>
+          <br/>
+
           <input type="submit"/>
         </form>
+
+        <a href="http://localhost:3000/signup">Create an account?</a>
       </div>
     )
   }

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
 
-  def encode_token(token)
+  def encode_token(payload)
     JWT.encode payload, secret, 'HS256'
   end
 
@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
+    # debugger
     User.find(decoded_token[0]["user_id"])
   end
 

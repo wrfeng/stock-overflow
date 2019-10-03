@@ -1,8 +1,8 @@
-class AuthController < ActionRecord
+class AuthController < ApplicationController
   def login
-    user = User.find_by(username: params[:username])
+    user = User.find_by(email: params[:email])
     is_authenticated = user.authenticate(params[:password])
-
+    # debugger
     if is_authenticated
       render json: {token: encode_token(user_payload(user)), user: user}
     else

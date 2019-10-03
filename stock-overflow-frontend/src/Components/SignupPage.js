@@ -5,6 +5,7 @@ class SignupPage extends React.Component {
     name: '',
     email: '',
     password: ''
+    
   }
 
   onChange = (event) => {
@@ -25,7 +26,7 @@ class SignupPage extends React.Component {
       .then(resp => resp.json())
       .then(resp => {
         localStorage.setItem('token', resp.token)
-        this.props.setUser(resp.email)
+        this.props.setUser(resp)
         resp.token && this.props.history.push('/')
       })
   }

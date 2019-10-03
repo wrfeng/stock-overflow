@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :transactions
+    resources :stocks
   end
 
   post "/login", to: "auth#login"

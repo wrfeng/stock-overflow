@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_200607) do
   create_table "stocks", force: :cascade do |t|
     t.string "symbol", null: false
     t.decimal "price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["symbol"], name: "index_stocks_on_symbol"
   end
 
@@ -25,12 +27,16 @@ ActiveRecord::Schema.define(version: 2019_10_03_200607) do
     t.integer "user_id"
     t.integer "stock_id"
     t.integer "shares", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.decimal "account_balance", precision: 10, scale: 2, default: "5000.0"
     t.index ["email"], name: "index_users_on_email", unique: true
   end

@@ -8,7 +8,9 @@ import './App.css'
 class App extends React.Component {
 
   state = {
-    currentUser: null
+    currentUser: null,
+    accountBalance: null,
+    userId: null
   }
 
   componentDidMount(){
@@ -18,13 +20,23 @@ class App extends React.Component {
           Authorization: localStorage.token
         }
       })
-      .then(resp => resp.json)
-      .then(profileInfo => this.setState({ currentUser: profileInfo }))
+      .then(resp => resp.json())
+      .then(profileInfo => {
+        console.log(profileInfo)
+        this.setState({ 
+          currentUser: profileInfo.email,
+          accountBalance: profileInfo.account_balance 
+        })
+      })
     }
   }
   
   setUser = (user) => {
-    this.setState({ currentUser: user })
+    this.setState({ 
+      currentUser: user.user.email,
+      accountBalance: user.user.account_balance,
+      userId: user.user.id 
+    })
   }
 
   render(){
@@ -34,7 +46,7 @@ class App extends React.Component {
         <Route path={'/login'} render={routerProps => <LoginPage setUser={this.setUser} {...routerProps}/>}/>
         {
           localStorage.token ? 
-          <Route exact path={'/'} component={Portfolio}/> : 
+          <Route exact path={'/'} render={routerProps => <Portfolio {...routerProps} currentUser={this.state} />}/> : 
           <Route exact path={'/'} render={routerProps => <LoginPage setUser={this.setUser} {...routerProps}/>}/> 
         }
         

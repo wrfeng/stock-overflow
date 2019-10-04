@@ -4,7 +4,7 @@ import Portfolio from './Components/Portfolio'
 import LoginPage from './Components/LoginPage'
 import SignupPage from './Components/SignupPage'
 import NavBar from './Components/NavBar'
-import TransactionsContainer from './Containers/TransactionsContainer'
+import Transactions from './Components/Transactions'
 import './App.css'
 
 class App extends React.Component {
@@ -48,7 +48,7 @@ class App extends React.Component {
         <Route path={'/signup'} render={routerProps => <SignupPage setUser={this.setUser} {...routerProps}/>}/>
         <Route path={'/login'} render={routerProps => <LoginPage setUser={this.setUser} {...routerProps}/>}/>
         <Route exact path={'/portfolio'} render={routerProps => <Portfolio {...routerProps} currentUser={this.state} />} />
-        <Route path={'/transactions'} render={routerProps => <TransactionsContainer {...routerProps} currentUser={this.state}/>}/>
+        <Route path={'/transactions'} render={routerProps => <Transactions {...routerProps} currentUser={this.state}/>}/>
         {
           localStorage.token ? 
           <Route exact path={'/'} render={routerProps => <Portfolio {...routerProps} buyStock={this.buyStock} currentUser={this.state} />}/> : 

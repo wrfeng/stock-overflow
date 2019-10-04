@@ -32,7 +32,7 @@ class Portfolio extends React.Component{
       })
   }
 
-  buyStock = priceTotal => {
+  buyStock = (priceTotal) => {
     fetch(`http://localhost:3001/users/${this.props.currentUser.userId}`, {
       method: 'PUT',
       headers: {

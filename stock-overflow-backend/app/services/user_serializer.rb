@@ -7,7 +7,7 @@ class UserSerializer
     options = {
       include: {
         stocks: { only: [:ticker] },
-        transactions: { only: [:stock_id, :shares] }
+        transactions: { only: [:stock_id, :shares, :action] }
       }
     }
     @user.to_json(options)

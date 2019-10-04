@@ -3,7 +3,7 @@ import React from 'react'
 class PurchaseForm extends React.Component{
   state = {
     ticker: '',
-    quantity: ''
+    shares: ''
   }
   
   handleChange = event => {
@@ -17,10 +17,10 @@ class PurchaseForm extends React.Component{
       .then(resp => resp.json())
       .then(resp => {
         let accountBalance = this.props.currentUser.accountBalance
-        let sum = resp["Global Quote"]["05. price"] * this.state.quantity
+        let sum = resp["Global Quote"]["05. price"] * this.state.shares
         if (accountBalance < sum){
           alert("insufficient funds")
-          this.setState({ticker: '', quantity: ''})
+          this.setState({ticker: '', shares: ''})
         } else {
           this.findOrCreateStock(resp["Global Quote"])
         }
@@ -52,12 +52,13 @@ class PurchaseForm extends React.Component{
       body: JSON.stringify({
         user_id: this.props.currentUser.userId,
         stock_id: stockId,
-        shares: this.state.quantity,
-        price_total: this.state.quantity * price
+        shares: this.state.shares,
+        price_total: this.state.shares * price,
+        action: "BUY"
       })
     })
-        this.props.buyStock(this.state.quantity * price)
-        this.setState({ ticker: '', quantity: '' })
+        this.props.buyStock(this.state.shares * price, this.state)
+        this.setState({ ticker: '', shares: '' })
   }
 
   render(){
@@ -74,9 +75,9 @@ class PurchaseForm extends React.Component{
           <br/>
 
           <input
-            name="quantity"
+            name="shares"
             type="number"
-            value={this.state.quantity}
+            value={this.state.shares}
             placeholder="Qty"
             onChange={this.handleChange}
           />

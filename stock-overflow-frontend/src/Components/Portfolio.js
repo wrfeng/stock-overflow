@@ -9,19 +9,22 @@ class Portfolio extends React.Component{
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/users/${this.props.currentUser.id}/transactions`)
+    fetch(`http://localhost:3001/transactions`)
       .then(resp => resp.json())
       .then(transactions => {
         let hash = {}
         transactions.forEach(transaction => {
-          let ticker = transaction["stock"]["ticker"]
-          if (hash[ticker]) {
-            hash[ticker]["shares"] += parseFloat(transaction.shares)
-          } else {
-            hash[ticker] = {
-              ...hash[ticker],
-              shares: parseFloat(transaction.shares),
-              ticker: ticker
+          if (transaction.user_id === this.props.currentUser.userId){
+
+            let ticker = transaction["stock"]["ticker"]
+            if (hash[ticker]) {
+              hash[ticker]["shares"] += parseFloat(transaction.shares)
+            } else {
+              hash[ticker] = {
+                ...hash[ticker],
+                shares: parseFloat(transaction.shares),
+                ticker: ticker
+              }
             }
           }
         })

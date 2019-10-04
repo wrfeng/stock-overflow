@@ -42,6 +42,7 @@ class App extends React.Component {
   }
 
   render(){
+    console.log(this.state.userId)
     return(
       <Router>
         {localStorage.token && <NavBar/>}

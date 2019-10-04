@@ -28,6 +28,8 @@ class LoginPage extends React.Component {
           localStorage.setItem('token', resp.token)
           this.props.setUser(resp)
           resp.token && this.props.history.push('/')
+        } else {
+          alert(resp.error)
         }
       })
   }

@@ -10,12 +10,13 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    Transaction.create(transaction_params)
+    transaction = Transaction.create(transaction_params)
+    render json: transaction
   end
 
   private
 
   def transaction_params
-    params.permit(:stock_id, :user_id, :shares)
+    params.require(:transaction).permit(:stock_id, :user_id, :shares, :price_total, :transaction)
   end
 end

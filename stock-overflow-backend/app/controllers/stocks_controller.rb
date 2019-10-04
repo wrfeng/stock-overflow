@@ -10,13 +10,14 @@ class StocksController < ApplicationController
   end
 
   def create
-    stock = Stock.create(stock_params)
+    # debugger
+    stock = Stock.find_or_create_by(stock_params)
     render json: stock
   end
 
   private
 
   def stock_params
-    params.permit(:symbol, :price)
+    params.permit(:ticker)
   end
 end

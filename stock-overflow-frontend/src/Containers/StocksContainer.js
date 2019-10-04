@@ -4,24 +4,27 @@ import Stock from '../Components/Stock'
 class StocksContainer extends React.Component{
 
   state = {
-    stocks: []
+    transactions: []
   }
 
   componentDidMount(){
-    fetch(`http://localhost:3001/users/${this.props.currentUser.id}/stocks`)
+    fetch(`http://localhost:3001/users/${this.props.currentUser.id}/transactions`)
       .then(resp => resp.json())
-      .then(stocks => this.setState({ stocks: stocks})) 
+      .then(transactions => this.setState({transactions: transactions})) 
   }
+
+
   render(){
-    let stocks = this.state.stocks.map(stock => {
-      return (
-        <Stock stock={stock}/>
-      )
-    })
+    console.log(this.state.stocks)
+    // let stocks = this.state.stocks.map(stock => {
+      // return (
+      //   <Stock key={stock.id} stock={stock}/>
+      // )
+    // })
     return(
       <div>
         Stocks Container
-        {stocks}
+        {/* // {stocks} */}
       </div>
       
     )

@@ -4,7 +4,7 @@ class Stock extends React.Component{
   render(){
     return(
       <div>
-        {this.props.stock.name}
+        {this.props.stock.ticker}
       </div>
     )
   }

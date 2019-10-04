@@ -6,7 +6,7 @@ class TransactionSerializer
   def to_serialized_json
     options = {
       include: {
-        stock: {only: [:symbol, price: :price]},
+        stock: {only: [:ticker]},
         user: {only: [:name, :email]}
       }
     }

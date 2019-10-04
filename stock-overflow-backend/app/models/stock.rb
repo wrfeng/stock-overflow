@@ -1,5 +1,5 @@
 class Stock < ApplicationRecord
-  validates :symbol, presence: true
+  validates :ticker, presence: true
 
   has_many :transactions
   has_many :users, through: :transactions

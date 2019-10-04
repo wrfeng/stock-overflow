@@ -24,10 +24,10 @@ class App extends React.Component {
       })
       .then(resp => resp.json())
       .then(profileInfo => {
-        console.log(profileInfo)
         this.setState({ 
           currentUser: profileInfo.email,
-          accountBalance: profileInfo.account_balance 
+          accountBalance: profileInfo.account_balance,
+          userId: profileInfo.id
         })
       })
     }

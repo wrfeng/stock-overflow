@@ -56,11 +56,8 @@ class PurchaseForm extends React.Component{
         price_total: this.state.quantity * price
       })
     })
-      .then(resp => resp.json())
-      .then(resp => {
         this.props.buyStock(this.state.quantity * price)
         this.setState({ ticker: '', quantity: '' })
-      })
   }
 
   render(){

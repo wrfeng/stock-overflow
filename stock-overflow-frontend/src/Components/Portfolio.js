@@ -44,8 +44,8 @@ class Portfolio extends React.Component{
         account_balance: parseFloat(this.state.accountBalance) - priceTotal
       })
     })
-      .then(resp => resp.json())
-      .then(resp => this.setState({accountBalance: resp.account_balance}))
+      
+    this.setState({ accountBalance: parseFloat(this.state.accountBalance) - priceTotal})
   }
 
   render(){

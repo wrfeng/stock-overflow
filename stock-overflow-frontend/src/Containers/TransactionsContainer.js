@@ -4,7 +4,7 @@ class TransactionsContainer extends React.Component{
   render(){
     return(
       <div>
-        Transactions
+        <h1>Transactions</h1>
       </div>
     )
   }

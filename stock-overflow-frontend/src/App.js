@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Portfolio from './Components/Portfolio'
 import LoginPage from './Components/LoginPage'
 import SignupPage from './Components/SignupPage'
+import NavBar from './Components/NavBar'
+import TransactionsContainer from './Containers/TransactionsContainer'
 import './App.css'
 
 class App extends React.Component {
@@ -42,8 +44,11 @@ class App extends React.Component {
   render(){
     return(
       <Router>
+        {localStorage.token && <NavBar/>}
         <Route path={'/signup'} render={routerProps => <SignupPage setUser={this.setUser} {...routerProps}/>}/>
         <Route path={'/login'} render={routerProps => <LoginPage setUser={this.setUser} {...routerProps}/>}/>
+        <Route exact path={'/portfolio'} render={routerProps => <Portfolio {...routerProps} currentUser={this.state} />} />
+        <Route path={'/transactions'} render={routerProps => <TransactionsContainer {...routerProps} currentUser={this.state}/>}/>
         {
           localStorage.token ? 
           <Route exact path={'/'} render={routerProps => <Portfolio {...routerProps} currentUser={this.state} />}/> : 

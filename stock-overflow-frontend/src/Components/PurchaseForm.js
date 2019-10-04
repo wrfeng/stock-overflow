@@ -16,10 +16,15 @@ class PurchaseForm extends React.Component{
     fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${this.state.ticker}&apikey=FXZJ8KXGB25LP15C`)
       .then(resp => resp.json())
       .then(resp => {
-        this.findOrCreateStock(resp["Global Quote"])
+        let accountBalance = this.props.currentUser.accountBalance
+        let sum = resp["Global Quote"]["05. price"] * this.state.quantity
+        if (accountBalance < sum){
+          alert("insufficient funds")
+          this.setState({ticker: '', quantity: ''})
+        } else {
+          this.findOrCreateStock(resp["Global Quote"])
+        }
       })
-
-    
   }
 
   findOrCreateStock = stock => {
@@ -42,7 +47,7 @@ class PurchaseForm extends React.Component{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Accept: 'application/json'
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         user_id: this.props.currentUser.userId,
@@ -53,7 +58,7 @@ class PurchaseForm extends React.Component{
     })
       .then(resp => resp.json())
       .then(resp => {
-        console.log(resp)
+        this.props.buyStock(this.state.quantity * price)
         this.setState({ ticker: '', quantity: '' })
       })
   }
@@ -73,6 +78,7 @@ class PurchaseForm extends React.Component{
 
           <input
             name="quantity"
+            type="number"
             value={this.state.quantity}
             placeholder="Qty"
             onChange={this.handleChange}

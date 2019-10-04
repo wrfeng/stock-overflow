@@ -2,9 +2,10 @@ import React from 'react'
 
 class Stock extends React.Component{
   render(){
+    const { ticker, shares } = this.props.stock
     return(
       <div>
-        {this.props.stock.ticker}
+        <p>{ticker} - {shares} Shares   </p>
       </div>
     )
   }

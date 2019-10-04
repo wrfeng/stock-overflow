@@ -51,7 +51,7 @@ class App extends React.Component {
         <Route path={'/transactions'} render={routerProps => <TransactionsContainer {...routerProps} currentUser={this.state}/>}/>
         {
           localStorage.token ? 
-          <Route exact path={'/'} render={routerProps => <Portfolio {...routerProps} currentUser={this.state} />}/> : 
+          <Route exact path={'/'} render={routerProps => <Portfolio {...routerProps} buyStock={this.buyStock} currentUser={this.state} />}/> : 
           <Route exact path={'/'} render={routerProps => <LoginPage setUser={this.setUser} {...routerProps}/>}/> 
         }
         

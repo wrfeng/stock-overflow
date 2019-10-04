@@ -24,6 +24,13 @@ class UsersController < ApplicationController
     render json: current_user
   end
 
+  def update
+    # debugger
+    user = User.find(params[:id])
+    user.update(user_params)
+    render json: user
+  end
+
   private
 
   def user_params

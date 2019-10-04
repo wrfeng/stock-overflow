@@ -11,7 +11,7 @@ class LoginPage extends React.Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault()
 
     fetch("http://localhost:3001/login", {

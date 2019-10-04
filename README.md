@@ -8,4 +8,5 @@ Running the server
   
 Starting the front end
 1) cd stock-overflow-frontend
-2) npm start
+2) npm install
+3) npm start

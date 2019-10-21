@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def secret 
-    Rails.application.credentials.app_secret
+    "choco123"
   end
 
   def fallback_index_html

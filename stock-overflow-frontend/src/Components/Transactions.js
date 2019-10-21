@@ -7,6 +7,12 @@ class Transactions extends React.Component{
     transactions: []
   }
 
+  handleClick = () => {
+    localStorage.clear()
+    this.props.clearUser()
+    this.props.history.push('/')
+  }
+  
   componentDidMount(){
     fetch(`/transactions`)
       .then(resp => resp.json())
@@ -18,7 +24,9 @@ class Transactions extends React.Component{
     console.log(this.state.transactions)
     return(
       <div>
-        <TransactionsContainer transactions={this.state.transactions}/>
+        <button onClick={this.handleClick}>Logout</button>
+        <br />
+        <TransactionsContainer clearUser={this.props.clearUser} transactions={this.state.transactions}/>
       </div>
     )
   }

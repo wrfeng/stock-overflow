@@ -51,11 +51,19 @@ class Portfolio extends React.Component{
     this.setState({ accountBalance: parseFloat(this.state.accountBalance) - priceTotal})
   }
 
+  handleClick = () => {
+    localStorage.clear()
+    this.props.clearUser()
+    this.props.history.push('/')
+  }
+
   render(){
     return(
       <div>
+        <button onClick={this.handleClick}>Logout</button>
+        <br />
         <h1>Portfolio (${Number(this.state.accountBalance).toFixed(2)})</h1>
-        <StocksContainer portfolio={this.state.portfolio}/>
+        <StocksContainer clearUser={this.props.clearUser} portfolio={this.state.portfolio}/>
         <PurchaseForm buyStock={this.buyStock} currentUser={this.props.currentUser}/>
       </div>
     )

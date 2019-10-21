@@ -55,8 +55,8 @@ class App extends React.Component {
         {localStorage.token && <NavBar/>}
         <Route path={'/signup'} render={routerProps => <SignupPage setUser={this.setUser} {...routerProps}/>}/>
         <Route path={'/login'} render={routerProps => <LoginPage setUser={this.setUser} {...routerProps}/>}/>
-        <Route exact path={'/portfolio'} render={routerProps => <Portfolio {...routerProps} setUser={this.clearUser} currentUser={this.state} />} />
-        <Route path={'/transactions'} render={routerProps => <Transactions {...routerProps} clearUser={this.clearUser}currentUser={this.state}/>}/>
+        <Route exact path={'/portfolio'} render={routerProps => <Portfolio {...routerProps} clearUser={this.clearUser} currentUser={this.state} />} />
+        <Route path={'/transactions'} render={routerProps => <Transactions {...routerProps} clearUser={this.clearUser} currentUser={this.state}/>}/>
         {
           localStorage.token ? 
           <Route exact path={'/'} render={routerProps => <Portfolio {...routerProps} buyStock={this.buyStock} currentUser={this.state} />}/> : 

@@ -28,6 +28,7 @@ class SignupPage extends React.Component {
         if (resp.errors) {
           alert(resp.errors)
         } else {
+          console.log(resp)
           localStorage.setItem('token', resp.token)
           this.props.setUser(resp)
           resp.token && this.props.history.push('/')

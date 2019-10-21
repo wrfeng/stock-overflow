@@ -28,7 +28,7 @@ class PurchaseForm extends React.Component{
   }
 
   findOrCreateStock = stock => {
-    fetch(`http://localhost:3001/stocks`, {
+    fetch(`/stocks`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ class PurchaseForm extends React.Component{
   }
 
   createTransaction = (stockId, price) => {
-    fetch('http://localhost:3001/transactions', {
+    fetch('/transactions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

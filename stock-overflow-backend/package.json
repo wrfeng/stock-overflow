@@ -1,5 +1,20 @@
 {
   "name": "stock-overflow-backend",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd stock-overflow-frontend && npm install && npm run-script build && cd ..",
+    "deploy": "cp -a stock-overflow-frontend/build/. public/",
+    "postinstall": "npm run-script build && npm run-script deploy && echo 'Client built!'"
+  },
+  "author": "",
+  "license": "ISC"
 }

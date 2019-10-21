@@ -9,7 +9,7 @@ class Portfolio extends React.Component{
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/transactions`)
+    fetch(`/transactions`)
       .then(resp => resp.json())
       .then(transactions => {
         let hash = {}
@@ -36,7 +36,7 @@ class Portfolio extends React.Component{
   }
 
   buyStock = (priceTotal) => {
-    fetch(`http://localhost:3001/users/${this.props.currentUser.userId}`, {
+    fetch(`/users/${this.props.currentUser.userId}`, {
       method: 'PUT',
       headers: {
         // Authorization: localStorage.token,

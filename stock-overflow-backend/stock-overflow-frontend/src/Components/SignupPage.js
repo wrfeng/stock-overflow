@@ -15,7 +15,7 @@ class SignupPage extends React.Component {
   onSubmit = (event) => {
     event.preventDefault()
 
-    fetch('http://localhost:3001/signup', {
+    fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ class SignupPage extends React.Component {
           <input type="submit"/>
         </form>
 
-        <a href="http://localhost:3000/login">Already registered?</a>
+        <a href="/login">Already registered?</a>
       </div>
     )
   }

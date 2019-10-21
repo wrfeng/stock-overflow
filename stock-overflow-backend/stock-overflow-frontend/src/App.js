@@ -17,7 +17,7 @@ class App extends React.Component {
 
   componentDidMount(){
     if (localStorage.token) {
-      fetch('http://localhost:3001/profile', {
+      fetch('/profile', {
         headers:{
           Authorization: localStorage.token
         }

@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   post "/login", to: "auth#login"
   post "/signup", to: "users#create"
   get "/profile", to: "users#profile"
+
+  get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
 end

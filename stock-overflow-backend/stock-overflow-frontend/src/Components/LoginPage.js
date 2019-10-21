@@ -14,7 +14,7 @@ class LoginPage extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    fetch("http://localhost:3001/login", {
+    fetch("/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ class LoginPage extends React.Component {
           <input type="submit"/>
         </form>
 
-        <a href="http://localhost:3000/signup">Create an account?</a>
+        <a href="/signup">Create an account?</a>
       </div>
     )
   }

@@ -8,7 +8,7 @@ class Transactions extends React.Component{
   }
 
   componentDidMount(){
-    fetch(`http://localhost:3001/transactions`)
+    fetch(`/transactions`)
       .then(resp => resp.json())
       .then(transactions => { this.setState({ 
         transactions: transactions.filter(transaction=> transaction.user_id === this.props.currentUser.userId)})

@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
   def secret 
     Rails.application.credentials.app_secret
   end
+
+  def fallback_index_html
+    render :file => 'public/index.html'
+  end
 end
